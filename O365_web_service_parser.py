@@ -20,7 +20,6 @@ import sys
 import datetime
 import time
 import uuid
-import webexteamssdk
 
 # import supporting functions from additional file
 from Firepower import Firepower
@@ -74,8 +73,6 @@ def loadConfig():
             "SSL_CERT": "/path/to/certificate",
             "AUTO_DEPLOY": False,
             "VERSION":  0,
-            "WEBEX_ACCESS_TOKEN": "",
-            "WEBEX_ROOM_ID": "",
             "PROXY": "",
             "PROXY_USER": "",
             "PROXY_PASSWD": "",
@@ -496,31 +493,6 @@ def WebServiceParser():
         sys.stdout.write("\n")
 
         saveConfig()
-
-        # If the user wants us to deploy policies, then do it
-        if CONFIG_DATA['AUTO_DEPLOY']:
-            DeployPolicies(fmc)
-        
-        # if Webex Teams tokens set, then send message to Webex room
-        if CONFIG_DATA['WEBEX_ACCESS_TOKEN'] == '' or CONFIG_DATA['WEBEX_ROOM_ID'] == '':
-
-            # user feed back
-            sys.stdout.write("Webex Teams not set.\n")
-            sys.stdout.write("\n")
-        else:
-
-            # adjust the Webex message based on the config
-            if CONFIG_DATA['AUTO_DEPLOY']:
-                message_text = f"Microsoft Office 365 objects have been successfully updated for the {CONFIG_DATA['O365_PLAN']} plan and {CONFIG_DATA['SERVICE_AREAS']} apps! Firepower policy deployment was initiated..."
-            else:
-                message_text = f"Microsoft Office 365 objects have been successfully updated for the {CONFIG_DATA['O365_PLAN']} plan and {CONFIG_DATA['SERVICE_AREAS']} apps! Firepower policy deployment is required."
-
-            # instantiate the Webex handler with the access token
-            #webex = ciscosparkapi.CiscoSparkAPI(CONFIG_DATA['WEBEX_ACCESS_TOKEN'])
-            teams = webexteamssdk.WebexTeamsAPI(CONFIG_DATA['WEBEX_ACCESS_TOKEN'])
-
-            # post a message to the specified Webex room
-            message = teams.messages.create(CONFIG_DATA['WEBEX_ROOM_ID'], text=message_text)
 
     elif bool_new_version == False:
         # no new version, do nothing
