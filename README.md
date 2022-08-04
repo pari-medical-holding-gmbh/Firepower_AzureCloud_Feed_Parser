@@ -1,19 +1,8 @@
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/chrivand/Firepower_O365_Feed_Parser)
 
-# O365 Web Service API to Firepower Objects Parser [v4.1.2]
-
-> **Note:** you may now also use this [SecureX orchestration workflow](https://ciscosecurity.github.io/sxo-05-security-workflows/workflows/secure-firewall/0031-microsoft-online-object-update)! 
-> **Note:** please also check out if the new Dynamic Object Feed feature might solve your use case.
+# Azure Cloud Service API to Firepower Objects Parser [v0.0.1]
 
 This is a sample script that parses the [NEW O365 Web Service API](https://docs.microsoft.com/en-us/office365/enterprise/managing-office-365-endpoints#webservice) that Microsoft publishes with URL, IPv4 and IPv6 addresses. These addresses are used for the infrastructure of the Microsoft cloud applications (e.g., Office 365). The script will parse the NEW O365 Web Service API into 2 separate lists and use the FMC API to upload them into 2 Group Objects. These Group Objects can be used in a Firepower trust/prefilter rule. By doing so the traffic is excluded from further inspection, to prevent latency issues with the Microsoft O365 applications. 
-
-Please contact me, Christopher Van Der Made <chrivand@cisco.com>, if you have any questions or remarks. If you find any bugs, please report them to me, and I will correct them (or do a pull request).
-
-If you would like to see a demo of the script, please check out the video below: 
-
-[https://youtu.be/nY9nWVrgO4I](https://youtu.be/nY9nWVrgO4I)
-
-[![Alt text](https://img.youtube.com/vi/nY9nWVrgO4I/0.jpg)](https://www.youtube.com/watch?v=nY9nWVrgO4I)
 
 ## Release notes v4.1.2
 
@@ -37,12 +26,6 @@ If you would like to see a demo of the script, please check out the video below:
 * Automatic policy deploy using API when changes were made to Objects (optional, caution this will also deploy other, unrelated policy changes);
 * Webex Teams alert when changes were made to Objects;
 * Continuously checking for updates with a specified time interval (optional).
-
-### Potential next steps
-
-* Create extra modules for other SaaS applications;
-* Create extra modules for other Cisco solutions (WSA, Umbrella, etc.).
-
 
 ## Solution Components
 
